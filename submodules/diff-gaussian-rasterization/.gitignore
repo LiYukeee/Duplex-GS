@@ -1,0 +1,9 @@
+build/
+build-CUDA/
+diff_gaussian_rasterization.egg-info/
+diff_gaussian_rasterization_sample.egg-info/
+*.pt
+*.dump
+*.ipynb
+output/
+__pycache__/
