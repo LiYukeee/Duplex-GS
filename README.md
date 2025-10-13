@@ -44,6 +44,7 @@ For custom data, you should process the image sequences with [Colmap](https://co
 
 
  ```
+cd script
 bash train_xxx.sh
  ```
 
