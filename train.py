@@ -284,7 +284,7 @@ def training_report(tb_writer, dataset_name, iteration, Ll1, loss, l1_loss, elap
         torch.cuda.empty_cache()
         
         validation_configs = ({'name': 'test', 'cameras' : scene.getTestCameras()}, 
-                                  {'name': 'train', 'cameras' : scene.getTrainCameras()})
+                                  {'name': 'train', 'cameras' : [scene.getTrainCameras()[idx % len(scene.getTrainCameras())] for idx in range(5, 30, 5)]})
 
         for config in validation_configs:
             if config['cameras'] and len(config['cameras']) > 0:
