@@ -561,8 +561,8 @@ if __name__ == "__main__":
     parser.add_argument('--detect_anomaly', action='store_true', default=False)
     parser.add_argument('--warmup', action='store_true', default=False)
     parser.add_argument('--use_wandb', action='store_true', default=False)
-    parser.add_argument("--test_iterations", nargs="+", type=int, default=[i for i in range(5000, 40000 + 1, 5000)])
-    parser.add_argument("--save_iterations", nargs="+", type=int, default=[40000])
+    parser.add_argument("--test_iterations", nargs="+", type=int, default=[-1])
+    parser.add_argument("--save_iterations", nargs="+", type=int, default=[-1])
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--checkpoint_iterations", nargs="+", type=int, default=[])
     parser.add_argument("--start_checkpoint", type=str, default = None)
@@ -578,7 +578,7 @@ if __name__ == "__main__":
     logger.info(f'args: {args}')
 
     if args.test_iterations[0] == -1:
-        args.test_iterations = [i for i in range(10000, args.iterations + 1, 10000)]
+        args.test_iterations = [i for i in range(5000, args.iterations + 1, 5000)]
     if len(args.test_iterations) == 0 or args.test_iterations[-1] != args.iterations:
         args.test_iterations.append(args.iterations)
     print(args.test_iterations)
