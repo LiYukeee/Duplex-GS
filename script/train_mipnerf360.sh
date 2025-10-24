@@ -1,4 +1,4 @@
-exp_name="V0_6_5_ET1_LPIPS20_05_k5_ablation_wo+anchor_search"
+exp_name="V0_6_5_ET1_LPIPS20_05_k5_ablation_lcwsr"
 appearance_dim=0
 visible_threshold=-1 #0.9
 progressive="True"

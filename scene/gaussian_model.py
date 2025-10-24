@@ -830,7 +830,9 @@ class GaussianModel:
         self.anchor_demon[anchor_visible_mask] += 1
 
         # update neural gaussian statis
-        update_filter = update_filter.unsqueeze(dim=1).repeat([1, self.n_offsets]).view(-1)
+        # 更改为sortfree渲染器必须要的改动
+        # update_filter = update_filter.unsqueeze(dim=1).repeat([1, self.n_offsets]).view(-1)
+        
         anchor_visible_mask = anchor_visible_mask.unsqueeze(dim=1).repeat([1, self.n_offsets]).view(-1)  # anchor_visible_mask -> gaussian_visible_mask
         combined_mask = torch.zeros_like(self.offset_gradient_accum, dtype=torch.bool).squeeze(dim=1)
         update_filter = torch.logical_and(update_filter, offset_selection_mask)
@@ -839,6 +841,9 @@ class GaussianModel:
         grad_norm = torch.norm(viewspace_point_tensor.grad[update_filter,:2], dim=-1, keepdim=True)
         self.offset_gradient_accum[combined_mask] += grad_norm
         self.offset_denom[combined_mask] += 1
+        
+        # 更改为sortfree渲染器必须要的改动
+        dense_score.grad = torch.zeros_like(dense_score)
         
         temp_dense_score = dense_score.grad[update_filter]
         self.dense_score[combined_mask] = torch.max(self.dense_score[combined_mask], temp_dense_score)

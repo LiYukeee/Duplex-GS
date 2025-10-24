@@ -267,26 +267,42 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
 
     rasterizer = GaussianRasterizer(raster_settings=raster_settings)
     
-    # Rasterize visible Gaussians to image, obtain their radii (on screen). 
+    # sortfree rasterizer
     rendered_image, radii = rasterizer(
-        dense_score = dense_score,
         sigma = pc.get_sigma,
-        weight_background = pc.get_wbg,
-        anchor_means3D = anchor_means3D,
-        anchor_scales = anchor_scales,
-        anchor_rotations=anchor_rotations,
+        weight_background=pc.get_wbg,
         means3D = xyz,
         means2D = screenspace_points,
         shs = None,
         colors_precomp = color,
         opacities = opacity,
-        vi = vi,
+        vi=vi,
         scales = scaling,
         rotations = rot,
         cov3D_precomp = None,
-        ET_grade = pc.ET_grade,
         if_depth_correct = pc.depthcorrect
         )
+    
+    # Rasterize visible Gaussians to image, obtain their radii (on screen). 
+    # rendered_image, radii = rasterizer(
+    #     dense_score = dense_score,
+    #     sigma = pc.get_sigma,
+    #     weight_background = pc.get_wbg,
+    #     anchor_means3D = anchor_means3D,
+    #     anchor_scales = anchor_scales,
+    #     anchor_rotations=anchor_rotations,
+    #     means3D = xyz,
+    #     means2D = screenspace_points,
+    #     shs = None,
+    #     colors_precomp = color,
+    #     opacities = opacity,
+    #     vi = vi,
+    #     scales = scaling,
+    #     rotations = rot,
+    #     cov3D_precomp = None,
+    #     ET_grade = pc.ET_grade,
+    #     if_depth_correct = pc.depthcorrect
+    #     )
 
     # global step
     # step += 1
