@@ -1,0 +1,3 @@
+[submodule "submodules/sort-free-diff-gaussian-rasterization"]
+	path = submodules/sort-free-diff-gaussian-rasterization
+	url = https://github.com/LiYukeee/sort-free-diff-gaussian-rasterization.git
