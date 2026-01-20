@@ -1,4 +1,4 @@
-name: octree-gs-original
+name: duplex
 channels:
   - pytorch
   - pyg
