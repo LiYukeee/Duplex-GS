@@ -1,6 +1,6 @@
 # Duplex-GS: Proxy-Guided Weighted Blending for Real-Time Order-Independent Gaussian Splatting
 
-### [Project Page]() | [ArXiv](https://arxiv.org/abs/2508.03180)
+### [Project Page](https://duplexgs.github.io/) | [ArXiv](https://arxiv.org/abs/2508.03180)
 [Weihang Liu*](https://weihangliu2024.github.io/), [Yuke Li](https://liyuke.cn/), Yuxuan Li, [Jingyi Yu](https://www.yu-jingyi.com/), [Xin Lou](https://sist.shanghaitech.edu.cn/louxin/main.htm)
 
 ## Overview
@@ -95,6 +95,19 @@ python render.py -m <path to trained model> # Generate renderings
 
 ## Result
 
+**Matrix City**
+
+
+| Method | PSNR↑ | SSIM↑ | LPIPS↓ | #GS/#Proxy↓ | FPS↑ | Time [h]↓ |
+|--------|-------|-------|--------|-------------|------|-----------|
+| 3DGS¹ | 27.03 | 0.808 | 0.310 | 10206 K | 66 | 2.60 |
+| Scaffold-GS | 26.82 | 0.811 | 0.288 | 4829 K | 113 | 2.31 |
+| Octree-GS | 25.18 | 0.738 | 0.397 | **4082 K** | **128** | 2.61 |
+| Octree-GS* | 26.61 | 0.812 | 0.292 | 8010 K | 79 | - |
+| LC-WSR | 26.34 | 0.782 | 0.340 | 7841 K | 34 | 3.86 |
+| **Ours (K = 5)** | **27.40** | **0.826** | **0.260** | 4165 K | 119 | **2.21** |
+
+*\* Officially released pretrained model.*
 
 **Mip-NeRF360**
 | Method | PSNR↑ | SSIM↑ | LPIPS↓ | Storage↓ |
